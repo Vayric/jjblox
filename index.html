@@ -3,140 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JJBLOX | Premium Key Provider</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>JJBLOX | Premium Key Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#020617] text-slate-200 selection:bg-blue-500/30">
+<body class="bg-[#020617] text-slate-200">
 
     <div id="particles-js" class="fixed inset-0 z-0 opacity-40"></div>
 
     <nav class="fixed w-full z-50 border-b border-white/5 transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-8 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-4 group cursor-pointer">
-                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.4)] group-hover:rotate-12 transition-transform">
+            <div class="flex items-center gap-4 group cursor-pointer" onclick="showPage('home')">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(37,99,235,0.4)]">
                     <i class="fa-solid fa-dove text-white"></i>
                 </div>
                 <span class="text-xl font-bold tracking-tight text-white uppercase italic">JJBLOX</span>
             </div>
-
-            <div class="hidden md:flex gap-10 text-[13px] font-bold tracking-widest text-slate-400">
-                <a href="#store" class="hover:text-blue-400 transition">STORE</a>
-                <a href="#features" class="hover:text-blue-400 transition">FEATURES</a>
-                <a href="#support" class="hover:text-blue-400 transition">SUPPORT</a>
-            </div>
-
             <div class="flex gap-4">
                 <button onclick="toggleModal('login')" class="text-sm font-bold text-slate-400 hover:text-white transition">LOGIN</button>
-                <button onclick="toggleModal('signup')" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-lg text-sm font-bold shadow-lg shadow-blue-900/20 transition-all active:scale-95">SIGN UP</button>
+                <button onclick="toggleModal('signup')" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-lg text-sm font-bold transition">SIGN UP</button>
             </div>
         </div>
     </nav>
 
-    <section class="relative pt-40 pb-20 px-6 z-10">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
-                Get Your <span class="text-blue-500">Access Key</span> <br>In Seconds.
-            </h1>
-            <p class="text-slate-400 text-lg mb-10 max-w-xl mx-auto">
-                Join 1k+ elite users. Automated delivery, undetected security, and 24/7 support.
-            </p>
-            
-            <div class="flex flex-wrap justify-center gap-8 text-xs font-mono text-slate-500 tracking-widest">
-                <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span> 99% UPTIME</div>
-                <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full"></span> 1,200+ USERS</div>
-                <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full"></span> INSTANT DELIVERY</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="store" class="py-20 relative z-10 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-3xl font-bold text-white mb-2">Available Licenses</h2>
-                    <p class="text-slate-500">Choose the plan that fits your needs.</p>
-                </div>
-                <div class="hidden md:block bg-slate-900/50 p-1 rounded-lg border border-white/5">
-                    <button class="px-4 py-2 text-xs font-bold text-white bg-blue-600 rounded-md">USD</button>
-                    <button class="px-4 py-2 text-xs font-bold text-slate-500">CRYPTO</button>
+    <div id="main-content" class="relative z-10 pt-32 pb-20">
+        
+        <section id="page-home" class="px-6">
+            <div class="max-w-7xl mx-auto text-center mb-20">
+                <h1 class="text-6xl font-extrabold text-white mb-4">JJBLOX <span class="text-blue-500">Store</span></h1>
+                <p class="text-slate-400">Select a key to begin your premium experience.</p>
+                <div class="mt-8 flex justify-center gap-4">
+                    <button onclick="switchCurrency('USD')" id="btn-usd" class="px-6 py-2 rounded-full bg-blue-600 text-white text-xs font-bold">USD</button>
+                    <button onclick="switchCurrency('CRYPTO')" id="btn-crypto" class="px-6 py-2 rounded-full bg-slate-800 text-slate-400 text-xs font-bold hover:bg-slate-700">CRYPTO</button>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="product-card bg-slate-900/40 border border-white/5 p-8 rounded-[2rem] hover:border-blue-500/50 transition-all group">
-                    <h3 class="text-slate-400 font-bold text-sm tracking-widest uppercase mb-4">Daily Access</h3>
-                    <div class="text-4xl font-bold text-white mb-6">$1.99</div>
-                    <ul class="space-y-4 text-sm text-slate-400 mb-8">
-                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> 24 Hour Key</li>
-                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> All Script Access</li>
-                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Basic Support</li>
-                    </ul>
-                    <button class="w-full py-4 rounded-xl bg-white/5 group-hover:bg-blue-600 group-hover:text-white font-bold transition-all">Purchase Key</button>
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div class="key-card" onclick="goToCheckout('Starter Key', '$1.99', 'fa-seedling')">
+                    <div class="icon-box bg-green-500/10 text-green-500"><i class="fa-solid fa-seedling"></i></div>
+                    <h3>Starter Key</h3>
+                    <p>24-hour access to basic features.</p>
+                    <div class="price">$1.99</div>
+                    <button class="buy-btn">Buy Now</button>
                 </div>
-
-                <div class="product-card bg-blue-600/5 border border-blue-500/30 p-8 rounded-[2rem] relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 bg-blue-600 text-[10px] font-black px-4 py-1 rounded-bl-xl">POPULAR</div>
-                    <h3 class="text-blue-400 font-bold text-sm tracking-widest uppercase mb-4">Monthly Pro</h3>
-                    <div class="text-4xl font-bold text-white mb-6">$9.99</div>
-                    <ul class="space-y-4 text-sm text-slate-300 mb-8">
-                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> 30 Day Key</li>
-                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Priority Updates</li>
-                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Private Discord</li>
-                    </ul>
-                    <button class="w-full py-4 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/20">Purchase Key</button>
+                <div class="key-card active" onclick="goToCheckout('Pro Key', '$9.99', 'fa-bolt')">
+                    <div class="icon-box bg-blue-500/10 text-blue-500"><i class="fa-solid fa-bolt"></i></div>
+                    <span class="badge">POPULAR</span>
+                    <h3>Pro Key</h3>
+                    <p>30-day access + Priority updates.</p>
+                    <div class="price">$9.99</div>
+                    <button class="buy-btn featured">Buy Now</button>
                 </div>
-
-                <div class="product-card bg-slate-900/40 border border-white/5 p-8 rounded-[2rem] hover:border-blue-500/50 transition-all group">
-                    <h3 class="text-slate-400 font-bold text-sm tracking-widest uppercase mb-4">Lifetime</h3>
-                    <div class="text-4xl font-bold text-white mb-6">$29.99</div>
-                    <ul class="space-y-4 text-sm text-slate-400 mb-8">
-                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Eternal Access</li>
-                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> HWID Resets</li>
-                        <li><i class="fa-solid fa-check text-blue-500 mr-2"></i> Early Beta Access</li>
-                    </ul>
-                    <button class="w-full py-4 rounded-xl bg-white/5 group-hover:bg-blue-600 group-hover:text-white font-bold transition-all">Purchase Key</button>
+                <div class="key-card" onclick="goToCheckout('Lifetime Key', '$29.99', 'fa-infinity')">
+                    <div class="icon-box bg-purple-500/10 text-purple-500"><i class="fa-solid fa-infinity"></i></div>
+                    <h3>Lifetime Key</h3>
+                    <p>Never pay again. All future updates.</p>
+                    <div class="price">$29.99</div>
+                    <button class="buy-btn">Buy Now</button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <footer class="py-10 border-t border-white/5 text-center relative z-10">
-        <p class="text-slate-600 text-xs font-medium tracking-widest uppercase">
-            &copy; 2025 JJBLOX Solutions. All rights reserved.
-        </p>
-    </footer>
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="key-card" onclick="goToCheckout('Developer Access', '$49.99', 'fa-code')">
+                    <div class="icon-box bg-orange-500/10 text-orange-500"><i class="fa-solid fa-code"></i></div>
+                    <h3>Developer Access</h3>
+                    <p>API access and custom script tools.</p>
+                    <div class="price">$49.99</div>
+                    <button class="buy-btn">Buy Now</button>
+                </div>
+                <div class="key-card" onclick="goToCheckout('Script Hub Plus', '$4.99', 'fa-layer-group')">
+                    <div class="icon-box bg-pink-500/10 text-pink-500"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3>Script Hub Plus</h3>
+                    <p>Exclusive access to private hubs.</p>
+                    <div class="price">$4.99</div>
+                    <button class="buy-btn">Buy Now</button>
+                </div>
+                <div class="key-card" onclick="goToCheckout('Beta Tester', '$14.99', 'fa-flask')">
+                    <div class="icon-box bg-yellow-500/10 text-yellow-500"><i class="fa-solid fa-flask"></i></div>
+                    <h3>Beta Tester</h3>
+                    <p>Early access to unreleased bypasses.</p>
+                    <div class="price">$14.99</div>
+                    <button class="buy-btn">Buy Now</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="page-checkout" class="px-6 hidden">
+            <div class="max-w-2xl mx-auto bg-slate-900/50 border border-white/5 rounded-[2.5rem] p-12 text-center">
+                <button onclick="showPage('home')" class="text-blue-500 text-sm font-bold mb-8 hover:underline">← Back to Store</button>
+                <div id="checkout-icon" class="w-20 h-20 bg-blue-500/10 text-blue-500 rounded-3xl flex items-center justify-center text-4xl mx-auto mb-6">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-2" id="checkout-item-name">Product Name</h2>
+                <div class="text-5xl font-black text-blue-500 mb-10" id="checkout-item-price">$0.00</div>
+                
+                <div class="space-y-4 text-left">
+                    <label class="text-xs font-bold text-slate-500 tracking-widest uppercase">Select Payment Method</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-4 border border-blue-500 bg-blue-500/5 rounded-2xl flex items-center gap-3 cursor-pointer">
+                            <i class="fa-solid fa-credit-card"></i> <span class="text-sm font-bold">Credit Card</span>
+                        </div>
+                        <div class="p-4 border border-white/5 bg-white/5 rounded-2xl flex items-center gap-3 cursor-pointer hover:border-white/20">
+                            <i class="fa-brands fa-bitcoin"></i> <span class="text-sm font-bold">Crypto</span>
+                        </div>
+                    </div>
+                    <button class="w-full py-5 bg-blue-600 text-white rounded-2xl font-bold text-lg mt-6 shadow-xl shadow-blue-600/20 hover:bg-blue-500 transition-all">Complete Purchase</button>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <div id="authModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-6">
         <div class="absolute inset-0 bg-slate-950/90 backdrop-blur-md" onclick="toggleModal()"></div>
-        <div class="bg-slate-900 border border-white/10 w-full max-w-md rounded-[2.5rem] p-10 relative z-10 shadow-2xl">
-            <div id="loginForm">
-                <h2 class="text-2xl font-bold text-white mb-2">Welcome Back</h2>
-                <p class="text-slate-500 mb-8 text-sm">Enter your credentials to manage your keys.</p>
-                <div class="space-y-4">
-                    <input type="text" placeholder="Username" class="auth-input">
-                    <input type="password" placeholder="Password" class="auth-input">
-                    <button class="w-full py-4 bg-blue-600 text-white rounded-xl font-bold mt-4 hover:bg-blue-500 transition-all">Login</button>
-                </div>
-            </div>
-
-            <div id="signupForm" class="hidden">
-                <h2 class="text-2xl font-bold text-white mb-2">Create Account</h2>
-                <p class="text-slate-500 mb-8 text-sm">Sign up to start your JJBLOX journey.</p>
-                <div class="space-y-4">
-                    <input type="text" id="regUser" placeholder="Username" class="auth-input">
-                    <input type="email" id="regEmail" placeholder="Email Address" class="auth-input">
-                    <input type="password" id="regPass" placeholder="Password" class="auth-input">
-                    <button onclick="handleSignup()" class="w-full py-4 bg-blue-600 text-white rounded-xl font-bold mt-4 hover:bg-blue-500 transition-all">Register</button>
-                </div>
-            </div>
+        <div class="bg-slate-900 border border-white/10 w-full max-w-md rounded-[2.5rem] p-10 relative z-10">
+            <div id="modal-inner"></div>
         </div>
     </div>
+
+    <footer class="py-10 text-center opacity-40 text-[10px] font-bold tracking-widest uppercase relative z-10">
+        &copy; 2025 JJBLOX Marketplace
+    </footer>
 
     <script src="script.js"></script>
 </body>
