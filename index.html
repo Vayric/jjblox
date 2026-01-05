@@ -1,1 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JJBLOX | Premium Scripting Utility</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-black text-white overflow-x-hidden">
+
+    <div id="particles-js" class="fixed inset-0 z-0 pointer-events-none"></div>
+
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            
+            <div class="flex items-center gap-3 cursor-pointer group">
+                <div class="logo-box relative w-12 h-12 flex items-center justify-center rounded-2xl overflow-hidden">
+                    <div class="absolute inset-0 bg-blue-600 opacity-20 group-hover:opacity-40 transition"></div>
+                    <i class="fa-solid fa-dove text-blue-400 text-2xl relative z-10 logo-icon"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tight">JJ<span class="text-blue-500">BLOX</span></span>
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 font-medium text-sm text-gray-400">
+                <a href="#features" class="hover:text-white transition">FEATURES</a>
+                <a href="#products" class="hover:text-white transition">STORE</a>
+                <a href="#status" class="hover:text-white transition">STATUS <span class="w-2 h-2 bg-green-500 rounded-full inline-block ml-1 animate-pulse"></span></a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="https://discord.gg" target="_blank" class="hidden md:block text-gray-400 hover:text-[#5865F2] transition text-xl">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+                <button id="loginBtn" class="glass-button px-6 py-2.5 rounded-xl font-bold text-sm hover:scale-105 transition">
+                    CLIENT LOGIN
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative z-10 min-h-screen flex items-center justify-center pt-20">
+        <div class="container mx-auto px-6 text-center">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-blue-500/30 mb-8 animate-fade-in-up">
+                <span class="w-2 h-2 bg-blue-500 rounded-full glow-dot"></span>
+                <span class="text-blue-300 text-xs font-bold tracking-widest uppercase">Version 4.5 Released</span>
+            </div>
+
+            <h1 class="text-6xl md:text-8xl font-extrabold mb-6 tracking-tight leading-tight">
+                DOMINATE THE <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-700 typing-effect">METAVERSE</span>
+            </h1>
+
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+                The most advanced execution engine for Roblox. Undetected, lightweight, and packed with a custom script hub.
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-5 justify-center items-center">
+                <button class="primary-btn px-8 py-4 rounded-2xl font-bold text-lg flex items-center gap-3">
+                    <i class="fa-solid fa-download"></i> Download Now
+                </button>
+                <button class="secondary-btn px-8 py-4 rounded-2xl font-bold text-lg flex items-center gap-3">
+                    <i class="fa-solid fa-key"></i> Get Key
+                </button>
+            </div>
+            
+            <div class="mt-16 flex justify-center gap-10 text-gray-500 text-sm font-semibold uppercase tracking-wider">
+                <div><i class="fa-solid fa-user-group text-blue-500 mr-2"></i> 150k+ Users</div>
+                <div><i class="fa-solid fa-code text-blue-500 mr-2"></i> 99% Uptime</div>
+            </div>
+        </div>
+    </header>
+
+    <section id="features" class="py-24 relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Why choose <span class="text-blue-500">JJBLOX?</span></h2>
+                <div class="h-1 w-20 bg-blue-600 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card glass-panel p-8 rounded-3xl border border-white/5 hover:border-blue-500/50 transition duration-500">
+                    <div class="w-14 h-14 bg-blue-900/30 rounded-2xl flex items-center justify-center text-blue-400 text-2xl mb-6">
+                        <i class="fa-solid fa-ghost"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Fully Undetected</h3>
+                    <p class="text-gray-400 leading-relaxed">Our custom bypass method ensures your account stays safe while you dominate the server.</p>
+                </div>
+
+                <div class="feature-card glass-panel p-8 rounded-3xl border border-white/5 hover:border-blue-500/50 transition duration-500">
+                    <div class="w-14 h-14 bg-blue-900/30 rounded-2xl flex items-center justify-center text-blue-400 text-2xl mb-6">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Instant Injection</h3>
+                    <p class="text-gray-400 leading-relaxed">No waiting. Our lightweight DLL attaches to the game process in milliseconds.</p>
+                </div>
+
+                <div class="feature-card glass-panel p-8 rounded-3xl border border-white/5 hover:border-blue-500/50 transition duration-500">
+                    <div class="w-14 h-14 bg-blue-900/30 rounded-2xl flex items-center justify-center text-blue-400 text-2xl mb-6">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Cloud Script Hub</h3>
+                    <p class="text-gray-400 leading-relaxed">Access thousands of community scripts directly from the UI without searching the web.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="py-24 bg-gradient-to-b from-transparent to-[#0a1120] relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 flex items-center gap-3">
+                <i class="fa-solid fa-cart-shopping text-blue-500"></i> Store
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <div class="product-card glass-panel rounded-3xl overflow-hidden group">
+                    <div class="h-40 bg-blue-900/20 flex items-center justify-center relative">
+                        <i class="fa-solid fa-feather text-6xl text-blue-500/50 group-hover:scale-110 transition duration-500"></i>
+                        <div class="absolute top-4 right-4 bg-blue-600 text-xs font-bold px-2 py-1 rounded-md">HOT</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold">JJ-Bird Basic</h3>
+                        <p class="text-gray-500 text-sm mb-4">Level 7 Executor</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xl font-bold text-white">Free</span>
+                            <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-bold transition">Get</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-panel rounded-3xl overflow-hidden group border border-blue-500/30 shadow-[0_0_30px_rgba(59,130,246,0.15)]">
+                    <div class="h-40 bg-gradient-to-br from-blue-900/40 to-black flex items-center justify-center relative">
+                        <i class="fa-solid fa-crown text-6xl text-yellow-400/80 group-hover:rotate-12 transition duration-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-blue-300">JJ-Premium</h3>
+                        <p class="text-gray-500 text-sm mb-4">Level 8 + Decompiler</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xl font-bold text-white">$9.99<span class="text-sm text-gray-500">/mo</span></span>
+                            <button class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg text-sm font-bold transition shadow-lg shadow-blue-600/20">Buy</button>
+                        </div>
+                    </div>
+                </div>
+
+                 <div class="product-card glass-panel rounded-3xl overflow-hidden group">
+                    <div class="h-40 bg-blue-900/20 flex items-center justify-center relative">
+                        <i class="fa-solid fa-server text-6xl text-purple-500/50 group-hover:scale-110 transition duration-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold">Server Side</h3>
+                        <p class="text-gray-500 text-sm mb-4">Infect games (SS)</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xl font-bold text-white">$14.99</span>
+                            <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-bold transition">Buy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card glass-panel rounded-3xl overflow-hidden group">
+                    <div class="h-40 bg-blue-900/20 flex items-center justify-center relative">
+                        <i class="fa-solid fa-code text-6xl text-green-500/50 group-hover:scale-110 transition duration-500"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold">Script Hub</h3>
+                        <p class="text-gray-500 text-sm mb-4">500+ Premium Scripts</p>
+                        <div class="flex justify-between items-center mt-4">
+                            <span class="text-xl font-bold text-white">$4.99</span>
+                            <button class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-sm font-bold transition">Buy</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="border-t border-white/5 bg-[#02040a] relative z-10">
+        <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <i class="fa-solid fa-dove text-blue-500"></i>
+                <span class="font-bold text-lg">JJBLOX</span>
+            </div>
+            <div class="text-gray-500 text-sm">
+                &copy; 2024 JJBLOX Inc. All rights reserved. 
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-blue-600 hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#5865F2] hover:text-white transition"><i class="fa-brands fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="loginModal" class="fixed inset-0 z-[60] flex items-center justify-center opacity-0 pointer-events-none transition duration-300">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" id="modalOverlay"></div>
+        <div class="bg-[#0f172a] border border-blue-500/20 p-8 rounded-3xl w-full max-w-md relative z-10 transform scale-95 transition duration-300" id="modalContent">
+            <button id="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <h2 class="text-2xl font-bold mb-1">Welcome Back</h2>
+            <p class="text-gray-400 text-sm mb-6">Login to access your dashboard</p>
+            
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Username</label>
+                    <input type="text" class="w-full bg-black/30 border border-white/10 rounded-xl p-3 text-white focus:border-blue-500 focus:outline-none transition">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-500 uppercase mb-1">Password</label>
+                    <input type="password" class="w-full bg-black/30 border border-white/10 rounded-xl p-3 text-white focus:border-blue-500 focus:outline-none transition">
+                </div>
+                <button type="button" class="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded-xl font-bold shadow-lg shadow-blue-600/20 transition">
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
