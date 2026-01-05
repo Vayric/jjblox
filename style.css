@@ -1,0 +1,135 @@
+/* style.css */
+
+/* --- 1. GLOBAL SETTINGS --- */
+:root {
+    --primary-blue: #3b82f6;
+    --dark-blue: #1d4ed8;
+    --bg-dark: #02040a;
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    /* Subtle background gradient mesh */
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(37, 99, 235, 0.05), transparent 25%);
+}
+
+/* --- 2. CUSTOM SCROLLBAR (For that premium feel) --- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e3a8a;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-blue);
+}
+
+/* --- 3. GLASSMORPHISM PANELS --- */
+.glass-panel {
+    background: rgba(20, 25, 40, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(4px);
+}
+
+/* --- 4. BUTTON STYLES --- */
+.primary-btn {
+    background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary-blue);
+}
+
+/* --- 5. ANIMATIONS --- */
+
+/* Fade In Up (Used for the Hero Badge) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Glow Dot Pulse */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.glow-dot {
+    animation: pulseGlow 2s infinite;
+}
+
+/* --- 6. UTILITIES --- */
+.typing-effect {
+    /* Simple fallback if JS fails, creates a nice gradient text */
+    background-size: 200% auto;
+    animation: textGradient 3s linear infinite;
+}
+
+@keyframes textGradient {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Modal Transitions */
+#loginModal {
+    transition: opacity 0.3s ease, pointer-events 0.3s ease;
+}
+
+#modalContent {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Specific Logo Glow */
+.logo-box {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
+}
