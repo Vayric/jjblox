@@ -1,185 +1,135 @@
-/* script.js */
+/* script.js - JJBLOX BRAIN */
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. MODAL SYSTEM (LOGIN POPUP) ---
-    const loginBtn = document.getElementById('loginBtn');
-    const modal = document.getElementById('loginModal');
-    const closeModal = document.getElementById('closeModal');
-    const modalContent = document.getElementById('modalContent');
-    const modalOverlay = document.getElementById('modalOverlay');
+    // --- 1. MODAL TOGGLE LOGIC ---
+    const authModal = document.getElementById('authModal');
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
 
-    function openModal() {
-        // Remove hiding classes
-        modal.classList.remove('opacity-0', 'pointer-events-none');
-        // Scale effect for the content
-        modalContent.classList.remove('scale-95');
-        modalContent.classList.add('scale-100');
-    }
+    window.toggleModal = (mode) => {
+        if (!mode) {
+            authModal.classList.add('hidden');
+            authModal.classList.remove('flex');
+            return;
+        }
 
-    function hideModal() {
-        modal.classList.add('opacity-0', 'pointer-events-none');
-        modalContent.classList.remove('scale-100');
-        modalContent.classList.add('scale-95');
-    }
+        authModal.classList.remove('hidden');
+        authModal.classList.add('flex');
 
-    loginBtn.addEventListener('click', openModal);
-    closeModal.addEventListener('click', hideModal);
-    modalOverlay.addEventListener('click', hideModal);
-
-    // --- 2. SCROLL ANIMATIONS (FADE IN ON SCROLL) ---
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px"
+        if (mode === 'login') {
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+        } else {
+            loginForm.classList.add('hidden');
+            signupForm.classList.remove('hidden');
+        }
     };
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('opacity-100', 'translate-y-0');
-                entry.target.classList.remove('opacity-0', 'translate-y-10');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+    // --- 2. DATA STORAGE (SIGNUP LOGIC) ---
+    window.handleSignup = () => {
+        const user = document.getElementById('regUser').value;
+        const email = document.getElementById('regEmail').value;
+        const pass = document.getElementById('regPass').value;
 
-    // Select elements to animate
-    const animateElements = document.querySelectorAll('.feature-card, .product-card, section h2');
-    
-    animateElements.forEach(el => {
-        // Set initial state (hidden and pushed down)
-        el.classList.add('transition', 'duration-700', 'opacity-0', 'translate-y-10');
-        observer.observe(el);
-    });
+        if (!user || !pass) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        // Create a user object (JSON format)
+        const userData = {
+            username: user,
+            email: email,
+            password: pass, // In a real site, passwords are never stored as plain text!
+            joinedDate: new Date().toLocaleDateString(),
+            isVIP: false
+        };
+
+        // Save to LocalStorage (Simulating a database)
+        localStorage.setItem('jjblox_user', JSON.stringify(userData));
+
+        alert(`Account created for ${user}! You can now login.`);
+        toggleModal('login');
+    };
 
     // --- 3. NAVBAR SCROLL EFFECT ---
     const navbar = document.getElementById('navbar');
-    
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('bg-black/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
+        if (window.scrollY > 20) {
+            navbar.classList.add('scrolled');
         } else {
-            navbar.classList.remove('bg-black/80', 'backdrop-blur-md', 'border-b', 'border-white/5');
+            navbar.classList.remove('scrolled');
         }
     });
 
-    // --- 4. TYPING EFFECT FOR HERO TITLE ---
-    const textElement = document.querySelector('.typing-effect');
-    const words = ["METAVERSE", "SERVER", "GAMEPLAY", "OPPONENTS"];
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
+    // --- 4. AMBIENT PARTICLE BACKGROUND ---
+    const initParticles = () => {
+        const container = document.getElementById('particles-js');
+        const canvas = document.createElement('canvas');
+        container.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
 
-    function typeEffect() {
-        const currentWord = words[wordIndex];
-        
-        if (isDeleting) {
-            textElement.textContent = currentWord.substring(0, charIndex - 1);
-            charIndex--;
-        } else {
-            textElement.textContent = currentWord.substring(0, charIndex + 1);
-            charIndex++;
+        let w, h, particles = [];
+
+        const resize = () => {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+        };
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > w || this.x < 0 || this.y > h || this.y < 0) this.reset();
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(59, 130, 246, 0.5)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
 
-        let typeSpeed = isDeleting ? 50 : 100;
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
 
-        if (!isDeleting && charIndex === currentWord.length) {
-            isDeleting = true;
-            typeSpeed = 2000; // Pause at end of word
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-            typeSpeed = 500;
-        }
+        const animate = () => {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach((p, i) => {
+                p.update();
+                p.draw();
+                // Connect particles with faint lines
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = p.x - particles[j].x;
+                    const dy = p.y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 120) {
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.15 - dist/1000})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(animate);
+        };
+        animate();
+    };
 
-        setTimeout(typeEffect, typeSpeed);
-    }
-    
-    // Start typing effect
-    typeEffect();
-
-    // --- 5. CUSTOM PARTICLE BACKGROUND (CANVAS) ---
     initParticles();
 });
-
-function initParticles() {
-    const canvasContainer = document.getElementById('particles-js');
-    const canvas = document.createElement('canvas');
-    canvasContainer.appendChild(canvas);
-    const ctx = canvas.getContext('2d');
-
-    let width, height;
-    let particles = [];
-
-    // Resize handling
-    function resize() {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-    }
-    
-    window.addEventListener('resize', resize);
-    resize();
-
-    // Particle Class
-    class Particle {
-        constructor() {
-            this.x = Math.random() * width;
-            this.y = Math.random() * height;
-            this.vx = (Math.random() - 0.5) * 0.5; // Velocity X
-            this.vy = (Math.random() - 0.5) * 0.5; // Velocity Y
-            this.size = Math.random() * 2;
-        }
-
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-
-            // Bounce off edges
-            if (this.x < 0 || this.x > width) this.vx *= -1;
-            if (this.y < 0 || this.y > height) this.vy *= -1;
-        }
-
-        draw() {
-            ctx.fillStyle = 'rgba(59, 130, 246, 0.5)'; // Blue particles
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-        }
-    }
-
-    // Create particles
-    for (let i = 0; i < 50; i++) { // 50 particles for good performance
-        particles.push(new Particle());
-    }
-
-    // Animation Loop
-    function animate() {
-        ctx.clearRect(0, 0, width, height);
-        
-        particles.forEach((p, index) => {
-            p.update();
-            p.draw();
-
-            // Draw lines between close particles
-            for (let j = index + 1; j < particles.length; j++) {
-                const p2 = particles[j];
-                const dx = p.x - p2.x;
-                const dy = p.y - p2.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < 150) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 - distance/1500})`; // Faint blue lines
-                    ctx.lineWidth = 0.5;
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(p2.x, p2.y);
-                    ctx.stroke();
-                }
-            }
-        });
-
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-}
