@@ -1,64 +1,135 @@
 /* style.css */
-:root { --accent: #3b82f6; }
-body { font-family: 'Outfit', sans-serif; overflow-x: hidden; }
 
-/* The UI Corner Boxes */
-.key-card {
-    background: rgba(15, 23, 42, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 2.5rem; /* Large UI Corners */
-    padding: 2.5rem;
-    position: relative;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    cursor: pointer;
+/* --- 1. GLOBAL SETTINGS --- */
+:root {
+    --primary-blue: #3b82f6;
+    --dark-blue: #1d4ed8;
+    --bg-dark: #02040a;
+    --glass-border: rgba(255, 255, 255, 0.08);
 }
 
-.key-card:hover {
-    background: rgba(30, 41, 59, 0.5);
-    border-color: var(--accent);
-    transform: translateY(-8px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+html {
+    scroll-behavior: smooth;
 }
 
-.icon-box {
-    width: 60px;
-    height: 60px;
-    border-radius: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    /* Subtle background gradient mesh */
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(37, 99, 235, 0.05), transparent 25%);
 }
 
-.key-card h3 { font-size: 1.25rem; font-weight: 800; color: white; margin-bottom: 0.5rem; }
-.key-card p { font-size: 0.85rem; color: #64748b; margin-bottom: 1.5rem; }
-.key-card .price { font-size: 1.75rem; font-weight: 800; color: white; margin-bottom: 1.5rem; }
-
-.buy-btn {
-    width: 100%;
-    padding: 1rem;
-    border-radius: 1.25rem;
-    background: rgba(255,255,255,0.05);
-    font-weight: 700;
-    font-size: 0.85rem;
-    transition: 0.3s;
+/* --- 2. CUSTOM SCROLLBAR (For that premium feel) --- */
+::-webkit-scrollbar {
+    width: 8px;
 }
 
-.key-card:hover .buy-btn { background: var(--accent); color: white; }
-
-.badge {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: var(--accent);
-    font-size: 10px;
-    font-weight: 900;
-    padding: 4px 12px;
-    border-radius: 100px;
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
 }
 
-.auth-input {
-    width: 100%; background: #020617; border: 1px solid rgba(255,255,255,0.05);
-    padding: 1rem; border-radius: 1rem; color: white; margin-bottom: 1rem;
+::-webkit-scrollbar-thumb {
+    background: #1e3a8a;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-blue);
+}
+
+/* --- 3. GLASSMORPHISM PANELS --- */
+.glass-panel {
+    background: rgba(20, 25, 40, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.glass-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(4px);
+}
+
+/* --- 4. BUTTON STYLES --- */
+.primary-btn {
+    background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary-blue);
+}
+
+/* --- 5. ANIMATIONS --- */
+
+/* Fade In Up (Used for the Hero Badge) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Glow Dot Pulse */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.glow-dot {
+    animation: pulseGlow 2s infinite;
+}
+
+/* --- 6. UTILITIES --- */
+.typing-effect {
+    /* Simple fallback if JS fails, creates a nice gradient text */
+    background-size: 200% auto;
+    animation: textGradient 3s linear infinite;
+}
+
+@keyframes textGradient {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Modal Transitions */
+#loginModal {
+    transition: opacity 0.3s ease, pointer-events 0.3s ease;
+}
+
+#modalContent {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Specific Logo Glow */
+.logo-box {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.2);
 }
